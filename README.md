@@ -1,6 +1,6 @@
 
 # TODO_LIST
-**About**
+**About**  
 This is a simple Ai-powered todo_list with a capabilities of generating steps required for implementation of one's Item required to be accomplished.Tech stack used in this project are mainly Django and Ollama.
 Summary
 Our project is built using django for the backend and strictly HTML,Taiwind-CSS and Daisy-ui for the frontend.
