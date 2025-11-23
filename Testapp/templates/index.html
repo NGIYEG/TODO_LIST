@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Todo List{% endblock %}
+
+{% block content %}
+
+<div class="w-full mt-10 px-4 md:px-0">
+
+    <!-- Title -->
+    <h1 class="text-3xl font-bold mb-6 text-center text-[#0d0d0d]">Todo List</h1>
+
+    <!-- Add Task Button -->
+    <div class="flex justify-center mb-8">
+        <a href="{% url 'add_todo' %}" class="btn btn-primary px-6">Add Task</a>
+    </div>
+
+    <ul class="space-y-5">
+        {% for todo in todos %}
+        <li class="p-6 bg-white rounded-2xl shadow-md border border-gray-200">
+
+            <!-- Top Row: Title, Description, Badge, Buttons -->
+            <div class="flex justify-between items-start">
+
+                <!-- Left Side -->
+                <div class="flex items-center gap-3">
+
+                    <div>
+                        <p class="text-xl font-semibold text-gray-900">{{ todo.title }}</p>
+                        <p class="text-sm text-gray-500">{{ todo.description }}</p>
+                    </div>
+
+                    {% if todo.completed %}
+                        <span class="badge badge-success text-sm py-2 px-3">Completed</span>
+                    {% endif %}
+                </div>
+
+                <!-- Right Side Buttons -->
+                <div class="flex gap-2">
+                    <a href="{% url 'complete_todo' todo.id %}" 
+                       class="btn btn-success btn-sm">Complete</a>
+                    <a href="{% url 'delete_todo' todo.id %}" 
+                       class="btn btn-error btn-sm">Delete</a>
+                </div>
+            </div>
+
+            <!-- Steps Section -->
+            {% if todo.steps %}
+            <div class="mt-4 bg-gray-100 rounded-xl p-4 border border-gray-200">
+
+                <h3 class="font-semibold text-gray-800 mb-2">Steps:</h3>
+
+                <ul class="list-disc ml-6 space-y-1">
+                    {% for step in todo.steps %}
+                        <li class="text-gray-700"> {{ step }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}

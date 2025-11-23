@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load form_extras %}
+
+{% block title %}Add Todo{% endblock %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto mt-12 p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
+
+    <!-- Page Title -->
+    <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">
+        Add New Todo Item
+    </h1>
+
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+
+        
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text font-semibold text-[#f3f3f3] ring-2">Title</span>
+            </label>
+            {{ form.title|add_class:"input input-bordered w-full" }}
+        </div>
+
+       
+        <div class="form-control">
+            <label class="label">
+                <span class="label-text font-semibold text-[#f3f3f3] ring-2">Description</span>
+            </label>
+            {{ form.description|add_class:"textarea textarea-bordered w-full h-32" }}
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end gap-4 pt-4">
+            <a href="{% url 'index' %}" class="btn btn-neutral px-6">Cancel</a>
+            <button type="submit" class="btn btn-primary px-6">Save Item</button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
